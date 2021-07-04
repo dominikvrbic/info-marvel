@@ -63,7 +63,7 @@ interface Item {
   name: string;
 }
 
-interface Thumbnail {
+export interface Thumbnail {
   path: string;
   extension: string;
 }
