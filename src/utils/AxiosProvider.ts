@@ -11,14 +11,20 @@ const { Provider } = AxiosContext;
  */
 export function AxiosProvider({ children }: React.PropsWithChildren<unknown>) {
   const auth = useMemo(() => {
-    const axios = Axios.create();
+    const axios = Axios.create({
+      baseURL: import.meta.env.VITE_PUBLIC_API_URL?.toString(),
+    });
 
     // REQUEST interceptor
     axios.interceptors.request.use((config) => {
       const { hash, publicKey, timestamp } = createHash();
-      config.params.ts = timestamp;
-      config.params.apikey = publicKey;
-      config.params.hash = hash;
+      config.params = {
+        ...config.params,
+        ts: timestamp,
+        apikey: publicKey,
+        hash: hash,
+      };
+
       return config;
     });
 
