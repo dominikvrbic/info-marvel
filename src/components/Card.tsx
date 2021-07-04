@@ -8,20 +8,19 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
+import { Thumbnail } from '../api/useHeros';
 
 interface Props {
   title: string;
   comicsCount?: number;
-  imageUrl?: string;
+  thumbnail: Thumbnail;
 }
 
 const MotionBox = motion<BoxProps>(Box);
 
-export const Card = ({
-  imageUrl = 'https://via.placeholder.com/400',
-  title,
-  comicsCount = 0,
-}: Props) => {
+export const Card = ({ thumbnail, title, comicsCount = 0 }: Props) => {
+  const imageUrl = thumbnail.path + '.' + thumbnail.extension;
+
   return (
     <MotionBox
       h="22rem"

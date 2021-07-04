@@ -10,22 +10,20 @@ export const HomePage = (): JSX.Element => {
   return (
     <>
       <Search inputProps={{ placeholder: 'Search character...' }} />
-      <SimpleGrid w="full" pt={4} spacing={[2, 2, 4]} columns={[1, 3, 5]}>
+      <SimpleGrid w="full" pt={4} spacing={[2, 2, 4]} columns={[1, 3, 5, 7]}>
         {isSuccess &&
           data &&
           data.data.results.map((result) => (
             <Link key={result.id} to={`/hero/${result.id}`}>
               <Card
                 title={result.name}
-                imageUrl={
-                  result.thumbnail.path + '.' + result.thumbnail.extension
-                }
+                thumbnail={result.thumbnail}
                 comicsCount={result.comics.available}
               />
             </Link>
           ))}
-        <Button mx="auto" maxW="15rem" text="LOAD MORE" />
       </SimpleGrid>
+      <Button my="8" mx="auto" maxW="15rem" text="LOAD MORE" />
     </>
   );
 };
