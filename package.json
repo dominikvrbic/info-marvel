@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^1.6.4",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "dotenv": "^10.0.0",
     "framer-motion": "^4",
     "md5": "^2.3.0",
     "react": "^17.0.0",
