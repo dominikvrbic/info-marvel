@@ -1,16 +1,13 @@
 import React from 'react';
 import { chakra, ButtonProps } from '@chakra-ui/react';
 
-interface Props {
+interface Props extends ButtonProps {
   text: string;
-  onClick?: () => void;
-  rest?: ButtonProps;
 }
 
-export const Button = ({ text, onClick, rest }: Props) => {
+export const Button = ({ text, ...rest }: Props) => {
   return (
     <chakra.button
-      onClick={onClick}
       size="xl"
       bg="red"
       color="white"
