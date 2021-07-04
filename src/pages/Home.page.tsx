@@ -2,14 +2,30 @@ import React from 'react';
 
 import { Button, Search, Card } from '../components';
 import { useHeros } from '../api';
+import { Link } from 'react-router-dom';
+import { SimpleGrid } from '@chakra-ui/react';
 
 export const HomePage = (): JSX.Element => {
-  const { data } = useHeros();
+  const { data, isSuccess } = useHeros();
   return (
     <>
-      <Button text="LOAD MORE" />
       <Search inputProps={{ placeholder: 'Search character...' }} />
-      <Card title="BLACK WIDOW" subtitle="Yelene Belova" />
+      <SimpleGrid w="full" pt={4} spacing={[2, 2, 4]} columns={[1, 3, 5]}>
+        {isSuccess &&
+          data &&
+          data.data.results.map((result) => (
+            <Link key={result.id} to={`/hero/${result.id}`}>
+              <Card
+                title={result.name}
+                imageUrl={
+                  result.thumbnail.path + '.' + result.thumbnail.extension
+                }
+                comicsCount={result.comics.available}
+              />
+            </Link>
+          ))}
+        <Button mx="auto" maxW="15rem" text="LOAD MORE" />
+      </SimpleGrid>
     </>
   );
 };
