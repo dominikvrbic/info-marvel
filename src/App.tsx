@@ -7,7 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import { HomePage } from './pages';
+import { HomePage, Hero } from './pages';
 function App() {
   return (
     <Center h="100vh">
@@ -15,7 +15,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/hero/:id" component={HomePage} />
+            <Route path="/hero/:id" component={Hero} />
             <Route>
               <Redirect to="/" />
             </Route>
