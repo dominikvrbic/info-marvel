@@ -19,7 +19,8 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-query": "^3.18.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-use": "^17.2.4"
   },
   "devDependencies": {
     "@types/md5": "^2.3.0",
