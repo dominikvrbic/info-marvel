@@ -26,7 +26,7 @@ export const Card = ({ thumbnail, title, comicsCount = 0 }: Props) => {
       h="22rem"
       bg="#303030"
       maxW={['full', '200px']}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.04, backgroundColor: 'red' }}
       whileTap={{ scale: 0.9 }}
       sx={{
         clipPath: 'polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%)',
