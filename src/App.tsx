@@ -1,18 +1,25 @@
-import { Center, Container } from '@chakra-ui/react';
+import { Image, Container, Flex } from '@chakra-ui/react';
 import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
+  Link,
 } from 'react-router-dom';
+import logo from './assets/Marvel_Logo.svg';
 
 import { HomePage, Hero } from './pages';
 function App() {
   return (
-    <Center h="100vh">
-      <Container h="100vh" maxW="8xl" centerContent className="App">
-        <Router>
+    <Flex direction="column" w="100%" h="100vh">
+      <Router>
+        <Flex justifyContent="center" alignItems="center" bg="#303030" w="100%">
+          <Link to="/">
+            <Image my="1.5rem" h="4rem" src={logo} alt="marvel" />
+          </Link>
+        </Flex>
+        <Container h="100vh" maxW="8xl" centerContent className="App">
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/hero/:id" component={Hero} />
@@ -20,9 +27,9 @@ function App() {
               <Redirect to="/" />
             </Route>
           </Switch>
-        </Router>
-      </Container>
-    </Center>
+        </Container>
+      </Router>
+    </Flex>
   );
 }
 
