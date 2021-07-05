@@ -3,7 +3,8 @@ import { Text, Flex } from '@chakra-ui/layout';
 import { useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
 import { Redirect, useParams } from 'react-router';
-import { useHero } from '../api';
+import { useComics, useHero } from '../api';
+import { Spinner } from '../components';
 
 interface Props {}
 
@@ -12,8 +13,13 @@ export const Hero = (props: Props) => {
   const [isLargerThan1280] = useMediaQuery('(min-width: 480px)');
 
   if (!id) return <Redirect to="/" />;
-  const { data } = useHero(id);
-  return (
+  const { data, isLoading, isError } = useHero(id);
+  const { data: comicsData, isLoading: isLoadingComics } = useComics(id);
+  if (isError) return <Redirect to="/" />;
+
+  return isLoading && isLoadingComics ? (
+    <Spinner h="15rem" w="15rem" mx="auto" />
+  ) : (
     <>
       <Flex
         direction={['column', 'row']}
