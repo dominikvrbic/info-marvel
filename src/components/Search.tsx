@@ -1,17 +1,13 @@
 import React from 'react';
 import {
   Input,
-  InputElementProps,
+  InputProps,
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 
-interface Props {
-  inputProps: InputElementProps;
-}
-
-export const Search = ({ inputProps }: Props) => {
+export const Search = (props: InputProps) => {
   return (
     <InputGroup>
       <InputLeftElement children={<SearchIcon />} />
@@ -24,7 +20,7 @@ export const Search = ({ inputProps }: Props) => {
         _hover={{
           borderBottom: '7px solid #666666',
         }}
-        {...inputProps}
+        {...props}
       ></Input>
     </InputGroup>
   );
