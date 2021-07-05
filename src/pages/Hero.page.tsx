@@ -1,5 +1,5 @@
 import { Image } from '@chakra-ui/image';
-import { Text, HStack, Stack, Flex } from '@chakra-ui/layout';
+import { Text, Flex } from '@chakra-ui/layout';
 import { useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
 import { Redirect, useParams } from 'react-router';
