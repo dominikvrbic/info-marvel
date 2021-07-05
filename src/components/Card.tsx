@@ -18,7 +18,7 @@ interface Props {
 
 const MotionBox = motion<BoxProps>(Box);
 
-export const Card = ({ thumbnail, title, comicsCount = 0 }: Props) => {
+export const HomePageCard = ({ thumbnail, title, comicsCount = 0 }: Props) => {
   const imageUrl = thumbnail.path + '.' + thumbnail.extension;
 
   return (

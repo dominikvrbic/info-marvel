@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 
-import { Button, Search, Card, Spinner } from '../components';
+import { Button, Search, HomePageCard, Spinner } from '../components';
 import { useHeros } from '../api';
 import { Link } from 'react-router-dom';
 import { SimpleGrid, Container } from '@chakra-ui/react';
@@ -33,7 +33,7 @@ export const HomePage = (): JSX.Element => {
           {isSuccess &&
             data?.data.results.map((result) => (
               <Link key={result.id} to={`/hero/${result.id}`}>
-                <Card
+                <HomePageCard
                   title={result.name}
                   thumbnail={result.thumbnail}
                   comicsCount={result.comics.available}
