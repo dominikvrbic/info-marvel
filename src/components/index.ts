@@ -1,4 +1,4 @@
 export { Button } from './Button';
-export { HomePageCard } from './Card';
+export { HomePageCard } from './HomePageCard';
 export { Search } from './Search';
 export { Spinner } from './Spinner';
