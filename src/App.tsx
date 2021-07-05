@@ -1,4 +1,4 @@
-import { Image, Container, Flex } from '@chakra-ui/react';
+import { Image, Flex } from '@chakra-ui/react';
 import React from 'react';
 import {
   BrowserRouter as Router,
