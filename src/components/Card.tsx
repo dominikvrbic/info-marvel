@@ -36,7 +36,7 @@ export const Card = ({ thumbnail, title, comicsCount = 0 }: Props) => {
       <AspectRatio h="10rem" w="full" ratio={4 / 3}>
         <Image src={imageUrl} w="full" h="full" />
       </AspectRatio>
-      <Box bg="red" w="full" h="7px"></Box>
+      <Box bg="red" w="full" h="7px" />
       <Flex
         direction="column"
         justify="space-between"
