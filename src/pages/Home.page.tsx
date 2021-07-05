@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import { Button, Search, Card } from '../components';
 import { useHeros } from '../api';
 import { Link } from 'react-router-dom';
 import { SimpleGrid, Container } from '@chakra-ui/react';
+import { useDebounce } from 'react-use';
 
 export const HomePage = (): JSX.Element => {
-  const { data, isSuccess } = useHeros();
+  const [search, setSearch] = useState('');
+  const [searchDebounce, setSearchDebounce] = useState('');
+  const { data, isSuccess } = useHeros(searchDebounce);
+  useDebounce(
+    () => {
+      setSearchDebounce(search);
+    },
+    400,
+    [search]
+  );
+
   return (
     <Container h="100vh" maxW="8xl" centerContent>
-      <Search inputProps={{ placeholder: 'Search character...' }} />
+      <Search
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setSearch(e.target.value)
+        }
+        placeholder="Search character..."
+      />
       <SimpleGrid w="full" pt={4} spacing={[2, 2, 4]} columns={[1, 3, 5, 7]}>
         {isSuccess &&
           data &&
