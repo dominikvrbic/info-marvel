@@ -3,12 +3,12 @@ import React from 'react';
 import { Button, Search, Card } from '../components';
 import { useHeros } from '../api';
 import { Link } from 'react-router-dom';
-import { SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid, Container } from '@chakra-ui/react';
 
 export const HomePage = (): JSX.Element => {
   const { data, isSuccess } = useHeros();
   return (
-    <>
+    <Container h="100vh" maxW="8xl" centerContent>
       <Search inputProps={{ placeholder: 'Search character...' }} />
       <SimpleGrid w="full" pt={4} spacing={[2, 2, 4]} columns={[1, 3, 5, 7]}>
         {isSuccess &&
@@ -24,6 +24,6 @@ export const HomePage = (): JSX.Element => {
           ))}
       </SimpleGrid>
       <Button my="8" mx="auto" maxW="15rem" text="LOAD MORE" />
-    </>
+    </Container>
   );
 };
