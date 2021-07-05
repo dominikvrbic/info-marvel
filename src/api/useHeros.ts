@@ -67,12 +67,15 @@ export interface Thumbnail {
   path: string;
   extension: string;
 }
-export function useHeros(): UseQueryResult<Heros> {
+export function useHeros(name?: string): UseQueryResult<Heros> {
   const axios = useAxios();
 
   const getHeros = async () => {
-    const { data } = await axios.get<Heros>('characters');
+    const params = name ? { nameStartsWith: name } : {};
+    const { data } = await axios.get<Heros>('characters', {
+      params: params,
+    });
     return data;
   };
-  return useQuery<Heros>(['heros'], getHeros);
+  return useQuery<Heros>(['heros', name], getHeros);
 }
