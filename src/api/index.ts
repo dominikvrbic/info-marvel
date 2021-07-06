@@ -1,3 +1,3 @@
 export { useHero } from './useHero';
-export { useHeros } from './useHeros';
+export { useHeroes } from './useHeroes';
 export { useComics } from './useComics';

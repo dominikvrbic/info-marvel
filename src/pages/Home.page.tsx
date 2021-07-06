@@ -3,13 +3,13 @@ import React, { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDebounce } from 'react-use';
 
-import { useHeros } from '../api';
+import { useHeroes } from '../api';
 import { Button, Search, HomePageCard, Spinner } from '../components';
 
 export const HomePage = (): JSX.Element => {
   const [search, setSearch] = useState('');
   const [searchDebounce, setSearchDebounce] = useState('');
-  const { data, isSuccess, isLoading } = useHeros(searchDebounce);
+  const { data, isSuccess, isLoading } = useHeroes(searchDebounce);
   useDebounce(
     () => {
       setSearchDebounce(search);
