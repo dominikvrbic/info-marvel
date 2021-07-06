@@ -51,7 +51,7 @@ export const HomePage = (): JSX.Element => {
             ))}
         </SimpleGrid>
       )}
-      {!isLoading && (
+      {!isLoading && hasNextPage && (
         <Button my="8" mx="auto" maxW="15rem" text="LOAD MORE" onClick={next} />
       )}
     </Container>

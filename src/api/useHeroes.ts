@@ -1,4 +1,10 @@
-import { QueryFunction, useInfiniteQuery, UseInfiniteQueryResult, useQuery, UseQueryResult } from 'react-query';
+import {
+  QueryFunction,
+  useInfiniteQuery,
+  UseInfiniteQueryResult,
+  useQuery,
+  UseQueryResult,
+} from 'react-query';
 
 import { useAxios } from '../utils';
 
@@ -79,7 +85,10 @@ export function useHeroes(name?: string): UseInfiniteQueryResult<Heroes> {
     return data;
   };
 
-  return useInfiniteQuery<Heroes>('heroes', getHeroes, {
-    getNextPageParam: (lastPage) => lastPage.data.offset + lastPage.data.limit,
+  return useInfiniteQuery<Heroes>(['heroes', name], getHeroes, {
+    getNextPageParam: (lastPage) =>
+      lastPage.data.total > 0
+        ? lastPage.data.offset + lastPage.data.limit
+        : undefined,
   });
 }
