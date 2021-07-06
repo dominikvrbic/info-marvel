@@ -1,16 +1,14 @@
 import { Image } from '@chakra-ui/image';
-import { Text, Flex } from '@chakra-ui/layout';
-import { useMediaQuery } from '@chakra-ui/react';
+import { Text, Flex, Container } from '@chakra-ui/layout';
+import { useMediaQuery, Divider, SimpleGrid } from '@chakra-ui/react';
 import React from 'react';
 import { Redirect, useParams } from 'react-router';
 import { useComics, useHero } from '../api';
-import { Spinner } from '../components';
+import { HeroCard, Spinner } from '../components';
 
-interface Props {}
-
-export const Hero = (props: Props) => {
+export const Hero = () => {
   const { id } = useParams<{ id: string }>();
-  const [isLargerThan1280] = useMediaQuery('(min-width: 480px)');
+  const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
 
   if (!id) return <Redirect to="/" />;
   const { data, isLoading, isError } = useHero(id);
@@ -27,7 +25,7 @@ export const Hero = (props: Props) => {
         bg="#1c1c1c"
         minH={['15rem', '35rem']}
         sx={
-          isLargerThan1280
+          isLargerThan480
             ? {
                 clipPath: 'polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%)',
                 WebkitClipPath:
@@ -35,7 +33,7 @@ export const Hero = (props: Props) => {
               }
             : {}
         }
-        py="8"
+        pt="8"
         justify="center"
       >
         <Text
@@ -63,6 +61,31 @@ export const Hero = (props: Props) => {
           }
         />
       </Flex>
+
+      <Divider orientation="horizontal" pb={8} />
+      <Container maxW="container.xl">
+        <Text fontWeight="semibold" as="h2" fontSize="4xl">
+          Comics
+        </Text>
+        <SimpleGrid
+          mx="auto"
+          pt={4}
+          px="2"
+          w="full"
+          spacing={[2, 2, 4]}
+          columns={[1, 3, 5]}
+        >
+          {comicsData?.data.results.map((comic) => (
+            <HeroCard
+              thumbnail={comic.thumbnail}
+              title={comic.title}
+              author={comic?.creators?.items[0]?.name}
+              key={comic.id}
+              description={comic.description}
+            />
+          ))}
+        </SimpleGrid>
+      </Container>
     </>
   );
 };
