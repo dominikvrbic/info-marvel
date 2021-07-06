@@ -1,4 +1,5 @@
 import { useQuery, UseQueryResult } from 'react-query';
+
 import { useAxios } from '../utils';
 
 interface Comics {

@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useState } from 'react';
-
-import { Button, Search, HomePageCard, Spinner } from '../components';
-import { useHeros } from '../api';
-import { Link } from 'react-router-dom';
 import { SimpleGrid, Container } from '@chakra-ui/react';
+import React, { ChangeEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDebounce } from 'react-use';
+
+import { useHeros } from '../api';
+import { Button, Search, HomePageCard, Spinner } from '../components';
 
 export const HomePage = (): JSX.Element => {
   const [search, setSearch] = useState('');

@@ -1,5 +1,5 @@
-import React from 'react';
 import { chakra, ButtonProps } from '@chakra-ui/react';
+import React from 'react';
 
 interface Props extends ButtonProps {
   text: string;

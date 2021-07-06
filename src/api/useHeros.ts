@@ -1,5 +1,6 @@
-import { useAxios } from '../utils';
 import { useQuery, UseQueryResult } from 'react-query';
+
+import { useAxios } from '../utils';
 
 interface Heros {
   code: number;

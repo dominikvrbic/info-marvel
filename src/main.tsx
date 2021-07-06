@@ -1,10 +1,12 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ChakraProvider } from '@chakra-ui/react';
-import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+
+import App from './App';
 import { AxiosProvider } from './utils';
+
 const queryClient = new QueryClient();
 
 ReactDOM.render(

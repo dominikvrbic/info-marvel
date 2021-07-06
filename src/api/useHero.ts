@@ -1,5 +1,7 @@
-import { useAxios } from '../utils/useAxios';
 import { useQuery, UseQueryResult } from 'react-query';
+
+import { useAxios } from '../utils/useAxios';
+
 interface Hero {
   code: number;
   status: string;

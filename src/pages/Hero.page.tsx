@@ -3,6 +3,7 @@ import { Text, Flex, Container } from '@chakra-ui/layout';
 import { useMediaQuery, Divider, SimpleGrid } from '@chakra-ui/react';
 import React from 'react';
 import { Redirect, useParams } from 'react-router';
+
 import { useComics, useHero } from '../api';
 import { HeroCard, Spinner } from '../components';
 

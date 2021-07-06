@@ -1,5 +1,3 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import {
   AspectRatio,
   Box,
@@ -8,6 +6,9 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import React from 'react';
+
 import { Thumbnail } from '../api/useHeros';
 
 interface Props {

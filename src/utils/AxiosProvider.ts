@@ -1,7 +1,8 @@
 import Axios from 'axios';
 import { useMemo, createElement } from 'react';
-import { createHash } from './createHash';
+
 import { AxiosContext } from './AxiosContext';
+import { createHash } from './createHash';
 
 const { Provider } = AxiosContext;
 /**

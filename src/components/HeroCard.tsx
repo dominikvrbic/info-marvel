@@ -1,5 +1,3 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import {
   AspectRatio,
   Box,
@@ -9,7 +7,11 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import React from 'react';
+
 import { Thumbnail } from '../api/useHeros';
+import { ComicModal } from './ComicModal';
 
 interface Props {
   title: string;
@@ -17,7 +19,7 @@ interface Props {
   author?: string;
   description?: string;
 }
-import { ComicModal } from './ComicModal';
+
 const MotionBox = motion<BoxProps>(Box);
 
 export function HeroCard({ thumbnail, title, author, description }: Props) {

@@ -7,9 +7,10 @@ import {
   Redirect,
   Link,
 } from 'react-router-dom';
-import logo from './assets/Marvel_Logo.svg';
 
+import logo from './assets/Marvel_Logo.svg';
 import { HomePage, Hero } from './pages';
+
 function App() {
   return (
     <Flex className="App" direction="column" w="100%" h="100vh">
