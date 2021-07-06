@@ -1,8 +1,8 @@
-import { useQuery, UseQueryResult } from 'react-query';
+import { QueryFunction, useInfiniteQuery, UseInfiniteQueryResult, useQuery, UseQueryResult } from 'react-query';
 
 import { useAxios } from '../utils';
 
-interface Heros {
+interface Heroes {
   code: number;
   status: string;
   copyright: string;
@@ -20,7 +20,7 @@ interface Data {
   results: Result[];
 }
 
-interface Result {
+export interface Result {
   id: number;
   name: string;
   description: string;
@@ -68,15 +68,18 @@ export interface Thumbnail {
   path: string;
   extension: string;
 }
-export function useHeroes(name?: string): UseQueryResult<Heros> {
+export function useHeroes(name?: string): UseInfiniteQueryResult<Heroes> {
   const axios = useAxios();
 
-  const getHeroes = async () => {
+  const getHeroes: QueryFunction<Heroes> = async ({ pageParam }) => {
     const params = name ? { nameStartsWith: name } : {};
-    const { data } = await axios.get<Heros>('characters', {
-      params: params,
+    const { data } = await axios.get<Heroes>('characters', {
+      params: { ...params, offset: pageParam },
     });
     return data;
   };
-  return useQuery<Heros>(['heros', name], getHeroes);
+
+  return useInfiniteQuery<Heroes>('heroes', getHeroes, {
+    getNextPageParam: (lastPage) => lastPage.data.offset + lastPage.data.limit,
+  });
 }

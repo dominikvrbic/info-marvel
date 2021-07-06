@@ -3,19 +3,28 @@ import React, { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDebounce } from 'react-use';
 
-import { useHeroes } from '../api';
+import { useHeroes, Result } from '../api';
 import { Button, Search, HomePageCard, Spinner } from '../components';
 
 export const HomePage = (): JSX.Element => {
   const [search, setSearch] = useState('');
   const [searchDebounce, setSearchDebounce] = useState('');
-  const { data, isSuccess, isLoading } = useHeroes(searchDebounce);
+  const { data, isSuccess, isLoading, fetchNextPage, hasNextPage } =
+    useHeroes(searchDebounce);
+
+  const next = () => fetchNextPage();
+
   useDebounce(
     () => {
       setSearchDebounce(search);
     },
     400,
     [search]
+  );
+
+  const allRows = (data?.pages ?? []).reduce<Result[]>(
+    (rows, heroes) => [...rows, ...heroes.data.results],
+    []
   );
 
   return (
@@ -31,7 +40,7 @@ export const HomePage = (): JSX.Element => {
       ) : (
         <SimpleGrid w="full" pt={4} spacing={[2, 2, 4]} columns={[1, 3, 5, 7]}>
           {isSuccess &&
-            data?.data.results.map((result) => (
+            allRows.map((result) => (
               <Link key={result.id} to={`/hero/${result.id}`}>
                 <HomePageCard
                   title={result.name}
@@ -42,7 +51,9 @@ export const HomePage = (): JSX.Element => {
             ))}
         </SimpleGrid>
       )}
-      {!isLoading && <Button my="8" mx="auto" maxW="15rem" text="LOAD MORE" />}{' '}
+      {!isLoading && (
+        <Button my="8" mx="auto" maxW="15rem" text="LOAD MORE" onClick={next} />
+      )}
     </Container>
   );
 };
