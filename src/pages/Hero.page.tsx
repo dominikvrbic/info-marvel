@@ -12,7 +12,7 @@ export const Hero = () => {
   const [isLargerThan480] = useMediaQuery('(min-width: 480px)');
 
   if (!id) return <Redirect to="/" />;
-  const { data, isLoading, isError } = useHero(id);
+  const { data, isLoading, isError, isFetched } = useHero(id);
   const { data: comicsData, isLoading: isLoadingComics } = useComics(id);
   if (isError) return <Redirect to="/" />;
 
@@ -68,24 +68,30 @@ export const Hero = () => {
         <Text fontWeight="semibold" as="h2" fontSize="4xl">
           Comics
         </Text>
-        <SimpleGrid
-          mx="auto"
-          pt={4}
-          px="2"
-          w="full"
-          spacing={[2, 2, 4]}
-          columns={[1, 3, 5]}
-        >
-          {comicsData?.data.results.map((comic) => (
-            <HeroCard
-              thumbnail={comic.thumbnail}
-              title={comic.title}
-              author={comic?.creators?.items[0]?.name}
-              key={comic.id}
-              description={comic.description}
-            />
-          ))}
-        </SimpleGrid>
+        {isFetched && comicsData?.data.results.length ? (
+          <SimpleGrid
+            mx="auto"
+            pt={4}
+            px="2"
+            w="full"
+            spacing={[2, 2, 4]}
+            columns={[1, 3, 5]}
+          >
+            {comicsData?.data.results.map((comic) => (
+              <HeroCard
+                thumbnail={comic.thumbnail}
+                title={comic.title}
+                author={comic?.creators?.items[0]?.name}
+                key={comic.id}
+                description={comic.description}
+              />
+            ))}
+          </SimpleGrid>
+        ) : (
+          <Text as="h3" fontSize="3xl">
+            There is no comics to be displayed
+          </Text>
+        )}
       </Container>
     </>
   );
