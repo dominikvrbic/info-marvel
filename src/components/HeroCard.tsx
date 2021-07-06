@@ -10,7 +10,7 @@ import {
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import { Thumbnail } from '../api/useHeros';
+import { Thumbnail } from '../api/useHeroes';
 import { ComicModal } from './ComicModal';
 
 interface Props {
