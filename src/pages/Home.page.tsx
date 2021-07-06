@@ -38,7 +38,13 @@ export const HomePage = (): JSX.Element => {
       {isLoading ? (
         <Spinner mx="auto" />
       ) : (
-        <SimpleGrid w="full" pt={4} spacing={[2, 2, 4]} columns={[1, 3, 5, 7]}>
+        <SimpleGrid
+          w="full"
+          my="8"
+          pt={4}
+          spacing={[2, 2, 4]}
+          columns={[1, 3, 5, 7]}
+        >
           {isSuccess &&
             allRows.map((result) => (
               <Link key={result.id} to={`/hero/${result.id}`}>
@@ -52,7 +58,7 @@ export const HomePage = (): JSX.Element => {
         </SimpleGrid>
       )}
       {!isLoading && hasNextPage && (
-        <Button my="8" mx="auto" maxW="15rem" text="LOAD MORE" onClick={next} />
+        <Button mx="auto" maxW="15rem" text="LOAD MORE" onClick={next} />
       )}
     </Container>
   );

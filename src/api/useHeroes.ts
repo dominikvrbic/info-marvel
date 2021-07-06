@@ -87,7 +87,7 @@ export function useHeroes(name?: string): UseInfiniteQueryResult<Heroes> {
 
   return useInfiniteQuery<Heroes>(['heroes', name], getHeroes, {
     getNextPageParam: (lastPage) =>
-      lastPage.data.total > 0
+      lastPage.data.total > lastPage.data.offset + lastPage.data.limit
         ? lastPage.data.offset + lastPage.data.limit
         : undefined,
   });
